@@ -2,10 +2,388 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
-  <title>全國教師甄試資訊站</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>全台國小教師聯合甄選官方入口站</title>
+  <style>
+    :root {
+      --bg: #f5f5f7;
+      --surface: #ffffff;
+      --border: #dddde3;
+      --text: #222;
+      --muted: #666;
+      --primary: #1b5fae;
+      --primary-soft: #e2f0ff;
+      --region-bg: #e3e8ff;
+      --danger: #e53935;
+      --radius-lg: 14px;
+      --shadow: 0 10px 26px rgba(15, 23, 42, .08);
+      --font: system-ui, -apple-system, BlinkMacSystemFont, "Noto Sans TC", sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font);
+      background: radial-gradient(circle at top left, #eef3ff, #f5f5f7 40%, #f5f5f7);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(16px);
+      background: rgba(245, 245, 247, 0.9);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.35);
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 64px;
+      gap: .75rem;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+    }
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #fff, #1b5fae);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 700;
+      font-size: .95rem;
+      box-shadow: 0 10px 18px rgba(37, 99, 235, .35);
+    }
+    .brand-text-title { font-weight: 700; font-size: .98rem; }
+    .brand-text-sub { font-size: .78rem; color: var(--muted); }
+    main { padding: 1.75rem 0 2.5rem; }
+    h1 {
+      font-size: 1.6rem;
+      margin-bottom: .5rem;
+      letter-spacing: .02em;
+    }
+    .hero-text { color: var(--muted); font-size: .9rem; max-width: 40rem; }
+    .pill-inline {
+      display: inline-flex;
+      align-items: center;
+      gap: .3rem;
+      padding: .18rem .6rem;
+      border-radius: 999px;
+      background: #e3f2fd;
+      color: #0f4c81;
+      font-size: .78rem;
+      margin-bottom: .4rem;
+    }
+    .pill-inline span { font-size: .9rem; }
+    .panel {
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      padding: 1.1rem 1.2rem 1.2rem;
+      margin-top: 1.1rem;
+    }
+    .panel-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: .6rem;
+    }
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .65rem;
+      margin-top: .35rem;
+    }
+    .toolbar input,
+    .toolbar select {
+      padding: .55rem .8rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      min-width: 180px;
+      font-size: .88rem;
+      background: #fcfcff;
+    }
+    .toolbar input:focus,
+    .toolbar select:focus {
+      outline: 2px solid rgba(37, 99, 235, .35);
+      outline-offset: 1px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: .9rem;
+      margin-top: 1rem;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(148, 163, 184, .35);
+      padding: .95rem 1rem 1rem;
+      box-shadow: 0 10px 22px rgba(15, 23, 42, .06);
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+    }
+    .card-head {
+      display: flex;
+      justify-content: space-between;
+      gap: .6rem;
+      align-items: flex-start;
+    }
+    .card-title {
+      font-weight: 600;
+      font-size: .98rem;
+    }
+    .badge-region {
+      padding: .2rem .55rem;
+      border-radius: 999px;
+      font-size: .75rem;
+      background: var(--region-bg);
+      color: #283593;
+      white-space: nowrap;
+    }
+    .badge-new {
+      display: inline-flex;
+      align-items: center;
+      padding: .15rem .5rem;
+      border-radius: 999px;
+      font-size: .72rem;
+      background: var(--danger);
+      color: #fff;
+      margin-left: .35rem;
+    }
+    .meta {
+      font-size: .8rem;
+      color: var(--muted);
+      display: flex;
+      flex-direction: column;
+      gap: .1rem;
+    }
+    .note {
+      font-size: .82rem;
+      color: #444;
+    }
+    .actions {
+      margin-top: .4rem;
+      display: flex;
+      gap: .4rem;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .25rem;
+      padding: .4rem .75rem;
+      border-radius: 999px;
+      font-size: .8rem;
+      border: 1px solid var(--primary);
+      color: var(--primary);
+      background: #fff;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+    }
+    .btn-primary:hover {
+      background: #17448a;
+      border-color: #17448a;
+    }
+    .empty {
+      margin-top: 1.2rem;
+      font-size: .85rem;
+      color: var(--muted);
+      padding: .9rem 1rem;
+      border-radius: 12px;
+      border: 1px dashed var(--border);
+      background: #fafafa;
+    }
+    footer {
+      border-top: 1px solid rgba(148, 163, 184, .4);
+      padding: 1rem 0 1.5rem;
+      font-size: .78rem;
+      color: var(--muted);
+      background: rgba(248, 249, 252, .9);
+    }
+    @media (max-width: 640px) {
+      .nav { flex-direction: column; align-items: flex-start; padding: .4rem 0 .6rem; }
+      h1 { font-size: 1.35rem; }
+    }
+  </style>
 </head>
 <body>
-  <h1>全國教師甄試資訊站（示範）</h1>
-  <p>這是測試頁面，確認 GitHub Pages 可以正常顯示。</p>
+<header>
+  <div class="container nav">
+    <div class="brand">
+      <div class="brand-mark">教甄</div>
+      <div>
+        <div class="brand-text-title">全台國小教師聯合甄選官方入口站</div>
+        <div class="brand-text-sub">整合北市、新北、桃園、基隆等縣市聯合甄選官方網站</div>
+      </div>
+    </div>
+    <div style="font-size:.8rem;color:var(--muted);">
+      本站僅做入口整合，所有資訊以各縣市官方公告為準
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+    <section>
+      <div class="pill-inline">
+        <span>🔎</span>
+        <span>快速查詢各縣市國小教師聯合甄選官方網站</span>
+      </div>
+      <h1>找教甄資訊，不用每次再搜尋一次</h1>
+      <p class="hero-text">
+        下方整理了目前常用的國小教師聯合甄選官方網站入口（臺北市、新北市、桃園市、基隆市）。
+        之後可逐步加入其他縣市與學段，讓學生一次查到全台資訊。
+      </p>
+
+      <div class="panel">
+        <div class="panel-title">搜尋縣市／篩選條件</div>
+        <div class="toolbar">
+          <input id="keyword" type="search" placeholder="輸入：臺北、新北、桃園、基隆…" />
+          <select id="region">
+            <option value="">全部區域</option>
+            <option value="北部">北部</option>
+            <option value="中部">中部</option>
+            <option value="南部">南部</option>
+            <option value="東部">東部</option>
+            <option value="離島">離島</option>
+          </select>
+          <select id="type">
+            <option value="">全部類型</option>
+            <option value="國小聯合甄選">國小聯合甄選</option>
+            <option value="公告整合頁">公告整合頁</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="list" class="grid"></div>
+      <div id="empty" class="empty" style="display:none;">
+        目前沒有符合條件的縣市聯合甄選網站，請試試其他關鍵字或篩選條件。
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    本頁為示範入口網站，僅整理官方網址與公告日期範例。實際簡章、報名日期與考試資訊，請務必以各縣市教育局及聯合甄選官方網站公告為準。
+  </div>
+</footer>
+
+<script>
+  // 目前先示範 4 個縣市，以後可以擴充成更多
+  const sites = [
+    {
+      county: '臺北市',
+      name: '臺北市公立國民小學教師聯合甄選',
+      region: '北部',
+      type: '國小聯合甄選',
+      url: 'https://primary.tp.edu.tw',
+      lastNotice: '2026-03-27', // 例：簡章公告日，實務上請由程式自動更新
+      note: '提供臺北市國小聯招簡章、最新消息、初複試資訊等官方公告。'
+    },
+    {
+      county: '新北市',
+      name: '新北市教育人員聯合甄選報名系統',
+      region: '北部',
+      type: '國小聯合甄選',
+      url: 'https://career.ntpc.edu.tw',
+      lastNotice: '2026-04-07',
+      note: '國民中小學及幼兒園教師聯合甄選官方報名與公告系統。'
+    },
+    {
+      county: '桃園市',
+      name: '桃園市國民小學教師聯合甄選官方網站',
+      region: '北部',
+      type: '國小聯合甄選',
+      url: 'https://elementary.tyc.edu.tw',
+      lastNotice: '2026-04-20',
+      note: '桃園市國小教師聯招最新消息、簡章下載與分發公告皆集中於此。'
+    },
+    {
+      county: '基隆市',
+      name: '基隆市國民小學及公立幼兒園教師聯合甄選系統',
+      region: '北部',
+      type: '國小聯合甄選',
+      url: 'https://psexam.kl.edu.tw',
+      lastNotice: '2026-04-07',
+      note: '基隆市國小與公立幼兒園教師聯合甄選報名與官方公告系統。'
+    }
+  ];
+
+  function isNew(dateStr) {
+    if (!dateStr) return false;
+    const d = new Date(dateStr);
+    if (Number.isNaN(d.getTime())) return false;
+    const now = new Date();
+    const diff = (now - d) / (1000 * 60 * 60 * 24);
+    return diff <= 7; // 7 天內顯示 NEW
+  }
+
+  function renderList() {
+    const kw = document.getElementById('keyword').value.trim().toLowerCase();
+    const region = document.getElementById('region').value;
+    const type = document.getElementById('type').value;
+    const listEl = document.getElementById('list');
+    const emptyEl = document.getElementById('empty');
+
+    const filtered = sites.filter(s => {
+      const text = (s.county + s.name + s.note).toLowerCase();
+      const matchKw = !kw || text.includes(kw);
+      const matchRegion = !region || s.region === region;
+      const matchType = !type || s.type === type;
+      return matchKw && matchRegion && matchType;
+    });
+
+    listEl.innerHTML = filtered.map(s => {
+      const newTag = isNew(s.lastNotice)
+        ? '<span class="badge-new">NEW</span>'
+        : '';
+      return `
+        <article class="card">
+          <div class="card-head">
+            <div>
+              <div style="font-size:.8rem;color:#6b7280;">${s.county}</div>
+              <div class="card-title">${s.name} ${newTag}</div>
+            </div>
+            <span class="badge-region">${s.region}</span>
+          </div>
+          <div class="meta">
+            <div>類型：${s.type}</div>
+            <div>最近公告日期：${s.lastNotice || '—'}</div>
+          </div>
+          <div class="note">${s.note}</div>
+          <div class="actions">
+            <a class="btn btn-primary" href="${s.url}" target="_blank" rel="noopener noreferrer">
+              前往官方網站
+            </a>
+          </div>
+        </article>
+      `;
+    }).join('');
+
+    emptyEl.style.display = filtered.length ? 'none' : 'block';
+  }
+
+  document.getElementById('keyword').addEventListener('input', renderList);
+  document.getElementById('region').addEventListener('change', renderList);
+  document.getElementById('type').addEventListener('change', renderList);
+
+  renderList();
+</script>
 </body>
 </html>

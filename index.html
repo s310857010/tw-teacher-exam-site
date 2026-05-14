@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>全國國中小教師聯合甄選官方入口站</title>
+  <title>全國教師甄選官方入口站（北大師培測試版）</title>
   <style>
     :root {
       --bg: #f5f5f7;
@@ -36,7 +36,7 @@
       border-bottom: 1px solid rgba(148, 163, 184, 0.35);
     }
     .container {
-      max-width: 1100px;
+      max-width: 1140px;
       margin: 0 auto;
       padding: 0 1rem;
     }
@@ -85,7 +85,6 @@
       font-size: .78rem;
       margin-bottom: .4rem;
     }
-    .pill-inline span { font-size: .9rem; }
     .panel {
       background: var(--surface);
       border-radius: var(--radius-lg);
@@ -148,7 +147,7 @@
       padding: .2rem .55rem;
       border-radius: 999px;
       font-size: .75rem;
-      background: var(--region-bg);
+      background: #e3e8ff;
       color: #283593;
       white-space: nowrap;
     }
@@ -227,12 +226,12 @@
     <div class="brand">
       <div class="brand-mark">教甄</div>
       <div>
-        <div class="brand-text-title">全台國小教師聯合甄選官方入口站</div>
-        <div class="brand-text-sub">整合北市、新北、桃園、基隆等縣市聯合甄選官方網站</div>
+        <div class="brand-text-title">全國教師甄選官方入口站（示範版）</div>
+        <div class="brand-text-sub">整合全國各縣市教師甄選／聯合甄選官方網站入口</div>
       </div>
     </div>
     <div style="font-size:.8rem;color:var(--muted);">
-      本站僅做入口整合，所有資訊以各縣市官方公告為準(NTPUTEC)
+      本站僅做入口整合，所有資訊以各縣市與教育部官方公告為準
     </div>
   </div>
 </header>
@@ -242,20 +241,21 @@
     <section>
       <div class="pill-inline">
         <span>🔎</span>
-        <span>快速查詢各縣市國中小教師聯合甄選官方網站</span>
+        <span>輸入縣市或使用篩選，快速找到教師甄選官方入口</span>
       </div>
-      <h1>找教甄資訊，不用每次再搜尋一次</h1>
+      <h1>一個頁面查全國教師甄選網站</h1>
       <p class="hero-text">
-        下方整理了目前常用的國小教師聯合甄選官方網站入口（臺北市、新北市、桃園市、基隆市）。
-        之後可逐步加入其他縣市與學段，讓北大師培的各位一次查到全國資訊。
+        下方整理了全國教師甄選入口，以及各縣市常用的教師甄選／國小聯合甄選官方網站。
+        之後可以把這份清單改成由 Notion 或排程程式自動更新，維持最新公告來源。成榮現正測試中~
       </p>
 
       <div class="panel">
         <div class="panel-title">搜尋縣市／篩選條件</div>
         <div class="toolbar">
-          <input id="keyword" type="search" placeholder="輸入：臺北、新北、桃園、基隆…" />
+          <input id="keyword" type="search" placeholder="輸入：全國、臺北、新北、臺中、高雄、花蓮…" />
           <select id="region">
             <option value="">全部區域</option>
+            <option value="全國">全國</option>
             <option value="北部">北部</option>
             <option value="中部">中部</option>
             <option value="南部">南部</option>
@@ -264,15 +264,16 @@
           </select>
           <select id="type">
             <option value="">全部類型</option>
+            <option value="全國入口">全國入口</option>
             <option value="國小聯合甄選">國小聯合甄選</option>
-            <option value="公告整合頁">公告整合頁</option>
+            <option value="教師甄選公告">教師甄選公告</option>
           </select>
         </div>
       </div>
 
       <div id="list" class="grid"></div>
       <div id="empty" class="empty" style="display:none;">
-        目前沒有符合條件的縣市聯合甄選網站，請試試其他關鍵字或篩選條件。
+        目前沒有符合條件的入口資料，請試試其他關鍵字或篩選條件。
       </div>
     </section>
   </div>
@@ -280,21 +281,51 @@
 
 <footer>
   <div class="container">
-    本頁為測試入口網站，僅整理官方網址與公告日期範例。實際簡章、報名日期與考試資訊，請務必以各縣市教育局及聯合甄選官方網站公告為準。
+    本頁為示範入口網站，僅整理官方網址與公告日期範例。實際簡章、報名日期與考試資訊，請務必以教育部、各縣市教育局及聯合甄選官方網站公告為準。
   </div>
 </footer>
 
 <script>
-  // 目前先示範 4 個縣市，以後可以擴充成更多
+  // 全國 & 各縣市教師甄選入口清單（示範）
   const sites = [
+    // 全國級入口
+    {
+      county: '全國',
+      name: '全國高級中等以下學校教師選聘網',
+      region: '全國',
+      type: '全國入口',
+      url: 'https://personnel.k12ea.gov.tw/tsn/',
+      lastNotice: '2025-12-30',
+      note: '教育部國教署建置之全國教師甄選與職缺查詢平台，可依縣市與學校階段搜尋公告。'
+    },
+    {
+      county: '全國',
+      name: '教師甄選單一窗口（清單檢索）',
+      region: '全國',
+      type: '全國入口',
+      url: 'https://www.k12ea.gov.tw/Tw/SingleWindow/SelectList?filter=466A9F9E-6964-470D-95A8-D9FA3B907605',
+      lastNotice: '2025-12-30',
+      note: '提供各縣市教師甄選案件清單檢索，常用作查找最新教甄公告的起點。'
+    },
+
+    // 北部
     {
       county: '臺北市',
       name: '臺北市公立國民小學教師聯合甄選',
       region: '北部',
       type: '國小聯合甄選',
       url: 'https://primary.tp.edu.tw',
-      lastNotice: '2026-03-27', // 例：簡章公告日，實務上請由程式自動更新
-      note: '提供臺北市國小聯招簡章、最新消息、初複試資訊等官方公告。'
+      lastNotice: '2026-03-27',
+      note: '臺北市國小聯招官方網站，提供簡章、最新消息、初複試資訊與成績查詢等。'
+    },
+    {
+      county: '臺北市',
+      name: '臺北市教育局教師甄選專區',
+      region: '北部',
+      type: '教師甄選公告',
+      url: 'https://www.doe.gov.taipei/Content_List.aspx?n=75F67559611CDA5C',
+      lastNotice: '2026-03-27',
+      note: '臺北市政府教育局教師甄選公告專區，包含國中、國小及其他類科公告。'
     },
     {
       county: '新北市',
@@ -303,16 +334,34 @@
       type: '國小聯合甄選',
       url: 'https://career.ntpc.edu.tw',
       lastNotice: '2026-04-07',
-      note: '國民中小學及幼兒園教師聯合甄選官方報名與公告系統。'
+      note: '新北市國民中小學及幼兒園教師聯合甄選官方系統，含公告與網路報名。'
     },
     {
       county: '桃園市',
-      name: '桃園市國民小學教師聯合甄選官方網站',
+      name: '桃園市國民小學教師聯合甄選網站',
       region: '北部',
       type: '國小聯合甄選',
       url: 'https://elementary.tyc.edu.tw',
       lastNotice: '2026-04-20',
-      note: '桃園市國小教師聯招最新消息、簡章下載與分發公告皆集中於此。'
+      note: '桃園市國小教師聯招官方網站，提供簡章下載、分發公告與相關訊息。'
+    },
+    {
+      county: '新竹市',
+      name: '新竹市國民小學暨幼兒園教師聯合甄選',
+      region: '北部',
+      type: '國小聯合甄選',
+      url: 'https://schexam.hc.edu.tw',
+      lastNotice: '2026-04-10',
+      note: '新竹市國小與幼兒園教師聯合甄選官方網站。'
+    },
+    {
+      county: '新竹縣',
+      name: '新竹縣政府教育處公告入口',
+      region: '北部',
+      type: '教師甄選公告',
+      url: 'https://www.hcc.edu.tw',
+      lastNotice: '2026-04-05',
+      note: '新竹縣教師甄選與學校徵才資訊多公告於教育處與學校公告系統。'
     },
     {
       county: '基隆市',
@@ -321,62 +370,169 @@
       type: '國小聯合甄選',
       url: 'https://psexam.kl.edu.tw',
       lastNotice: '2026-04-07',
-      note: '基隆市國小與公立幼兒園教師聯合甄選報名與官方公告系統。'
+      note: '基隆市國小與公立幼兒園教師聯合甄選官方系統，提供簡章與報名資訊。'
+    },
+
+    // 中部
+    {
+      county: '苗栗縣',
+      name: '苗栗縣教師甄選介聘專區',
+      region: '中部',
+      type: '國小聯合甄選',
+      url: 'https://www.mlc.edu.tw/System/main/News/Index.php?MainCateID=10',
+      lastNotice: '2026-04-12',
+      note: '苗栗縣政府教育處教師甄選介聘專區，公告國中小及附設幼兒園教師聯合甄選簡章與介聘資訊。'
+    },
+    {
+      county: '臺中市',
+      name: '臺中市國民小學暨幼兒園教師甄選網站',
+      region: '中部',
+      type: '國小聯合甄選',
+      url: 'https://txg115-ts-e.twrecruit.com.tw',
+      lastNotice: '2026-03-27',
+      note: '臺中市政府教育局受託辦理之國小暨幼兒園教師甄選官方網站，提供最新消息與報名入口。'
+    },
+    {
+      county: '彰化縣',
+      name: '彰化縣甄選介聘天地',
+      region: '中部',
+      type: '教師甄選公告',
+      url: 'https://volunteer.chc.edu.tw/boe/',
+      lastNotice: '2025-03-26',
+      note: '彰化縣國中小教師甄選簡章與重要時程主要公告於甄選介聘天地與教育新雲端。'
+    },
+    {
+      county: '南投縣',
+      name: '南投縣教育處教師介聘與甄選入口',
+      region: '中部',
+      type: '教師甄選公告',
+      url: 'https://www.ntct.edu.tw/p/404-1000-294.php',
+      lastNotice: '2026-04-01',
+      note: '南投縣國民小學暨幼兒園教師甄選及介聘相關資訊入口。'
+    },
+    {
+      county: '雲林縣',
+      name: '雲林縣國民小學暨附設幼兒園教師聯合甄選公告',
+      region: '中部',
+      type: '國小聯合甄選',
+      url: 'https://education.ylc.edu.tw/News_Content.aspx?n=101459&s=309281',
+      lastNotice: '2025-03-30',
+      note: '雲林縣政府教育處公告國民小學暨附設幼兒園教師聯合甄選簡章與相關資訊。'
+    },
+    {
+      county: '嘉義市',
+      name: '嘉義市教育處公告入口',
+      region: '中部',
+      type: '教師甄選公告',
+      url: 'https://www.cyc.edu.tw',
+      lastNotice: '2026-04-10',
+      note: '嘉義市教師甄選資訊多於教育處及學校公告中發布，可由此入口查詢。'
+    },
+    {
+      county: '嘉義縣',
+      name: '嘉義縣教育資訊網教師聯合甄選公告',
+      region: '中部',
+      type: '國小聯合甄選',
+      url: 'https://www.cyc.edu.tw/modules/tadnews',
+      lastNotice: '2026-04-01',
+      note: '嘉義縣國民中小學暨附設幼兒園教師聯合甄選簡章與重要日程公告。'
+    },
+
+    // 南部
+    {
+      county: '臺南市',
+      name: '臺南市國民小學暨學前特教師聯合甄選網站',
+      region: '南部',
+      type: '國小聯合甄選',
+      url: 'https://qualify.tn.edu.tw/trexamps/',
+      lastNotice: '2025-12-07',
+      note: '臺南市國小與學前特教教師聯合甄選官方網站，提供簡章、報名與分發公告。'
+    },
+    {
+      county: '高雄市',
+      name: '高雄市市立國民小學教師聯合甄選網站',
+      region: '南部',
+      type: '國小聯合甄選',
+      url: 'https://exam.kh.edu.tw/teaexam/',
+      lastNotice: '2024-12-31',
+      note: '高雄市國小聯合甄選官方網站，含網路報名、簡章與成績查詢資訊。'
+    },
+    {
+      county: '高雄市',
+      name: '高雄市政府教育局甄選公告站',
+      region: '南部',
+      type: '教師甄選公告',
+      url: 'https://employ.kh.edu.tw',
+      lastNotice: '2026-03-15',
+      note: '高雄市教師及相關人員甄選公告集中於此網站，並連結至聯招專站。'
+    },
+    {
+      county: '屏東縣',
+      name: '屏東縣政府教育處網站（各級學校公告）',
+      region: '南部',
+      type: '教師甄選公告',
+      url: 'https://www.ptc.edu.tw',
+      lastNotice: '2026-04-10',
+      note: '屏東縣各級學校公告與教師甄試資訊集中於教育處及學校公告系統。'
+    },
+
+    // 東部
+    {
+      county: '宜蘭縣',
+      name: '宜蘭縣政府教育處教師甄選公告入口',
+      region: '東部',
+      type: '教師甄選公告',
+      url: 'https://www.ilc.edu.tw',
+      lastNotice: '2026-04-10',
+      note: '宜蘭縣教師甄選與各級學校公告集中於教育處網站公告區。'
+    },
+    {
+      county: '花蓮縣',
+      name: '花蓮縣教師聯合甄選網站',
+      region: '東部',
+      type: '國小聯合甄選',
+      url: 'https://career.hlc.edu.tw',
+      lastNotice: '2026-04-21',
+      note: '花蓮縣國民小學暨幼兒園教師聯合甄選官方網站，簡章與錄取公告發布於此。'
+    },
+    {
+      county: '臺東縣',
+      name: '臺東縣教師甄選公告服務網',
+      region: '東部',
+      type: '國小聯合甄選',
+      url: 'https://teacher.boe.ttct.edu.tw/',
+      lastNotice: '2026-04-14',
+      note: '臺東縣政府教育處教師甄選公告服務網，提供國民小學與幼兒園教師聯合甄選相關資訊。'
+    },
+
+    // 離島
+    {
+      county: '澎湖縣',
+      name: '澎湖縣教師甄試資訊入口',
+      region: '離島',
+      type: '教師甄選公告',
+      url: 'https://www.penghu.gov.tw/edu/',
+      lastNotice: '2025-05-01',
+      note: '澎湖縣政府教育處教師甄試與報名相關資訊入口，正式教甄公告與簡章以該站發布為準。'
+    },
+    {
+      county: '金門縣',
+      name: '金門縣政府教育處公告網站',
+      region: '離島',
+      type: '教師甄選公告',
+      url: 'https://www.km.edu.tw',
+      lastNotice: '2025-04-15',
+      note: '金門縣國民中小學及幼兒園教師甄選相關公告集中於教育處網站。'
+    },
+    {
+      county: '連江縣',
+      name: '連江縣（馬祖）教師甄選介聘公告',
+      region: '離島',
+      type: '教師甄選公告',
+      url: 'https://www.matsu.edu.tw/Publish.aspx?cnid=38',
+      lastNotice: '2025-05-26',
+      note: '連江縣政府教育處教師甄選與介聘公告，並同步轉知其他縣市甄選資訊。'
     }
-      {
-    county: '苗栗縣',
-    name: '苗栗縣教師甄選介聘專區',
-    region: '中部',
-    type: '國小聯合甄選',
-    url: 'https://www.mlc.edu.tw/System/main/News/Index.php?MainCateID=10',
-    lastNotice: '2026-04-12', // 例：115學年度聯合甄選相關公告日期
-    note: '苗栗縣政府教育處教師甄選介聘專區，公告國小暨附設幼兒園教師聯合甄選簡章與介聘資訊。'
-  },
-  {
-    county: '彰化縣',
-    name: '彰化縣教育處甄選介聘天地',
-    region: '中部',
-    type: '國小聯合甄選',
-    url: 'https://newboe.chc.edu.tw', // 先以教育新雲端入口為主，之後可補專頁網址
-    lastNotice: '2026-03-26',
-    note: '彰化縣國中小教師甄選簡章與重要時程主要公告於教育新雲端與甄選介聘天地。'
-  },
-  {
-    county: '雲林縣',
-    name: '雲林縣國民小學暨附設幼兒園教師聯合甄選公告',
-    region: '中部',
-    type: '國小聯合甄選',
-    url: 'https://education.ylc.edu.tw/News_Content.aspx?n=101459&s=309281',
-    lastNotice: '2025-03-30',
-    note: '雲林縣政府教育處公告國民小學暨附設幼兒園教師聯合甄選簡章與相關資訊。'
-  },
-  {
-    county: '花蓮縣',
-    name: '花蓮縣教師聯合甄選網站',
-    region: '東部',
-    type: '國小聯合甄選',
-    url: 'https://career.hlc.edu.tw',
-    lastNotice: '2026-04-21',
-    note: '花蓮縣國民小學暨幼兒園教師聯合甄選官方網站，簡章與錄取公告會發布於此。'
-  },
-  {
-    county: '臺東縣',
-    name: '臺東縣教師甄選公告服務網',
-    region: '東部',
-    type: '國小聯合甄選',
-    url: 'https://teacher.boe.ttct.edu.tw/',
-    lastNotice: '2026-04-14',
-    note: '臺東縣政府教育處教師甄選公告服務網，提供國民小學與幼兒園教師聯合甄選相關資訊。'
-  },
-  {
-    county: '澎湖縣',
-    name: '澎湖縣教師甄試網站',
-    region: '離島',
-    type: '國小聯合甄選',
-    url: 'https://www.penghu.gov.tw/edu/', // 教育處入口，下有教師甄試專頁
-    lastNotice: '2024-05-01',
-    note: '澎湖縣政府教育處教師甄試與報名相關資訊入口，正式教甄公告與簡章以該站發布為準。'
-  }
   ];
 
   function isNew(dateStr) {
@@ -396,7 +552,7 @@
     const emptyEl = document.getElementById('empty');
 
     const filtered = sites.filter(s => {
-      const text = (s.county + s.name + s.note).toLowerCase();
+      const text = (s.county + s.name + s.note + s.region + s.type).toLowerCase();
       const matchKw = !kw || text.includes(kw);
       const matchRegion = !region || s.region === region;
       const matchType = !type || s.type === type;
